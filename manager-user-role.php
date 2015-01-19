@@ -37,9 +37,12 @@
         add_filter('editable_roles', array(&$this, 'remove_admin_editable_roles'));
         add_filter('map_meta_cap', array(&$this, 'map_meta_cap'), 10, 4);
 
-
         // Function to translate role display name. Currently not working. 
         //add_filter( 'gettext_with_context', array(&$this,'wpdev_141551_translate_user_roles'), 10, 4 );
+
+
+        // Analytics 360: Allow roles with editor abilities or higher, to access data
+        add_filter('a360_dashboard_capability', array(&$this, 'modify_a360_role'));
     }
 
     function activate( $network_wide ) {
@@ -186,6 +189,11 @@
 
         return $caps;
 
+    }
+
+    // Analytics360
+    function modify_a360_role() {
+        return 'moderate_comments';
     }
 }
 
