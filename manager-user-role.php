@@ -12,7 +12,7 @@
  * Plugin Name:     Manager user role
  * Plugin URI:      @TODO
  * Description:     Creates a new user role, Manager, with capabilities to add users and edit theme apperances.
- * Version:         1.0.0
+ * Version:         1.2.0
  * Author:          Nina Cecilie Højholdt
  * Author URI:      http://www.mico.dk
  * Text Domain:     eic-user
@@ -131,6 +131,10 @@
         $capabilities[ 'create_users' ] = true;
         $capabilities[ 'add_users' ] = true;
         $capabilities[ 'delete_users' ] = true;
+
+        // Woocommerce
+        $capabilities[ 'manage_woocommerce' ] = true;
+        $capabilities[ 'view_woocommerce_reports' ] = true;
 
         $capabilities = apply_filters( 'manager_capabilities', $capabilities );
 
