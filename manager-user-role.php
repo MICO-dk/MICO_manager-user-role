@@ -133,9 +133,12 @@
         $capabilities[ 'delete_users' ] = true;
 
         // Woocommerce
-        $capabilities[ 'manage_woocommerce' ] = true;
-        $capabilities[ 'view_woocommerce_reports' ] = true;
-
+        $shop_manager_role = get_role( 'shop_manager' );
+        if ($shop_manager_role) {
+            $shop_manager_capabilities = $shop_manager_role->capabilities;
+            $capabilities = array_merge($shop_manager_capabilities, $capabilities);
+        }
+        
         $capabilities = apply_filters( 'manager_capabilities', $capabilities );
 
         return $capabilities;
